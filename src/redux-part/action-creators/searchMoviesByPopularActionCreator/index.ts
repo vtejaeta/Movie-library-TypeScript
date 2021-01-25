@@ -1,9 +1,10 @@
 import { SearchMoviesByPopularActionType } from '../../action-types/searchMoviesByPopular'
 import { SearchMoviesByPopularAction } from '../../actions/searchMoviesByPopular'
+import { Dispatch } from 'redux'
 import GetMovies from '../../../api/GetMovies'
 
 export const searchMoviesByPopular = (pageId: number) => {
-  return async (dispatch: any) => {
+  return async (dispatch: Dispatch<SearchMoviesByPopularAction>) => {
     dispatch({
       type: SearchMoviesByPopularActionType.SEARCH_MOVIES_BY_POPULAR,
     })
