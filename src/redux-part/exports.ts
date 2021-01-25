@@ -1,3 +1,3 @@
 export * from './store'
-export * as searchMoviesByPopularActionCreator from './action-creators/searchMoviesByPopularActionCreator'
-export * as searchMoviesByTopRatedActionCreator from './action-creators/searchMoviesByTopRatedActionCreator'
+export { searchMoviesByPopular } from './action-creators/searchMoviesByPopularActionCreator'
+export { searchMoviesByTopRated } from './action-creators/searchMoviesByTopRatedActionCreator'
