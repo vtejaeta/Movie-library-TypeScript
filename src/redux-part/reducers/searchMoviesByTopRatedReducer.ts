@@ -1,9 +1,9 @@
 import { SearchMoviesByTopRatedActionType } from '../action-types/searchMoviesByTopRated'
 import { SearchMoviesByTopRatedAction } from '../actions/searchMoviesByTopRated'
-import { MoviesState } from '../moviesState'
+import { MoviesState, initialState } from '../moviesState'
 
 const searchMoviesByTopRatedReducer = (
-  state: MoviesState,
+  state: MoviesState = initialState,
   action: SearchMoviesByTopRatedAction
 ): MoviesState => {
   switch (action.type) {
