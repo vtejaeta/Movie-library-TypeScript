@@ -1,5 +1,3 @@
-import { error } from 'console'
-
 export interface MoviesState {
   loading: boolean
   error: string | null
