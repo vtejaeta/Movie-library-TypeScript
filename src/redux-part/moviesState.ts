@@ -1,7 +1,7 @@
 export interface MoviesState {
   loading: boolean
   error: string | null
-  data: { page: number; results: []; total_pages: number } | {}
+  data: {}
 }
 export const initialState = {
   loading: false,

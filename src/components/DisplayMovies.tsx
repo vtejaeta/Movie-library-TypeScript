@@ -16,7 +16,6 @@ const DisplayMovies: React.FC<DisplayMoviesProps> = ({ category }) => {
   })
 
   useEffect(()=>{
-    data.length && setListOfMovies(data.results)
   },[])
 
   return <h1>{category}</h1>
