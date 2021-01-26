@@ -1,5 +1,6 @@
 import { useTypedSelector } from '../hooks/useTypedSelector'
 import { useEffect,useState } from 'react'
+import {state} from '../redux-part/exports'
 
 interface DisplayMoviesProps {
   category: string
@@ -7,7 +8,7 @@ interface DisplayMoviesProps {
 
 const DisplayMovies: React.FC<DisplayMoviesProps> = ({ category }) => {
   const [listOfMovies,setListOfMovies] = useState([])
-  let { loading, error, data } = useTypedSelector((state) => {
+  let { loading, error, data } = useTypedSelector((state):state.MoviesState => {
     if (category === 'top-rated') {
       return state.moviesByTopRated
     }
@@ -15,7 +16,7 @@ const DisplayMovies: React.FC<DisplayMoviesProps> = ({ category }) => {
   })
 
   useEffect(()=>{
-    setListOfMovies(data.results)
+    data.length && setListOfMovies(data.results)
   },[])
 
   return <h1>{category}</h1>
