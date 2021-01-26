@@ -1,11 +1,17 @@
-import MoviesList from './components/MoviesList'
+import MoviesListByPopular from './components/MoviesListByPopular'
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 
 const App = () => {
   return (
     <>
-      <h1>Navbar</h1>
-      <h1>Carousel</h1>
-      <MoviesList />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/'>
+            <Redirect to='/browse/popular' />
+          </Route>
+          <Route path='/browse/popular' component={MoviesListByPopular} />
+        </Switch>
+      </BrowserRouter>
     </>
   )
 }

@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { useActions } from '../hooks/useActions'
 
-const MoviesList: React.FC = () => {
+const MoviesListByPopular: React.FC = () => {
   const [movies, setMovies] = useState({})
   const { searchMoviesByTopRated, searchMoviesByPopular } = useActions()
   
@@ -17,4 +17,4 @@ const MoviesList: React.FC = () => {
   )
 }
 
-export default MoviesList
+export default MoviesListByPopular

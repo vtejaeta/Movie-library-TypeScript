@@ -3,7 +3,7 @@ import { error } from 'console'
 export interface MoviesState {
   loading: boolean
   error: string | null
-  data: {}
+  data: { page: number; results: []; total_pages: number }
 }
 export const initialState = {
   loading: false,
