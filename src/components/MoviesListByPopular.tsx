@@ -9,7 +9,7 @@ const MoviesListByPopular: React.FC = () => {
     searchMoviesByPopular(1)
   }, [searchMoviesByPopular])
 
-  return <DisplayMovies/>
+  return <DisplayMovies category='popular'/>
 }
 
 export default MoviesListByPopular
