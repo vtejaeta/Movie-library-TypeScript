@@ -1,15 +1,22 @@
-import { useDispatch,useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { useActions } from '../hooks/useActions'
+import { useTypedSelector } from '../hooks/useTypedSelector'
 
 const MoviesListByPopular: React.FC = () => {
-  const [movies, setMovies] = useState<{
-    page: number
-    results: []
-    total_pages: number
-  } | {}>({})
-  const { searchMoviesByTopRated, searchMoviesByPopular } = useActions()
-  const {data,error,loading} = useSelector(state => state.moviesByPopular)
+  const [movies, setMovies] = useState<
+    | {
+        page: number
+        results: []
+        total_pages: number
+      }
+    | {}
+  >({})
+  const { searchMoviesByPopular } = useActions()
+  const { data, error, loading } = useTypedSelector(
+    (state) => state.moviesByPopular
+  )
+
+  console.log({data})
 
   useEffect(() => {
     searchMoviesByPopular(1)

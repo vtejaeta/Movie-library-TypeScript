@@ -4,7 +4,7 @@ interface searchMoviesByPopularAction {
 
 interface searchMoviesByPopularSuccessAction {
   type: 'search_movies_by_popular_success'
-  payload: {}[]
+  payload: { page: number; results: []; total_pages: number }
 }
 
 interface searchMoviesByPopularErrorAction {

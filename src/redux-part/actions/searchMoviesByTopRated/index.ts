@@ -4,7 +4,7 @@ interface searchMoviesByTopRatedAction {
   
   interface searchMoviesByTopRatedSuccessAction {
     type: 'search_movies_by_top_rated_success'
-    payload: {}[]
+    payload: { page: number; results: []; total_pages: number }
   }
   
   interface searchMoviesByTopRatedErrorAction {
