@@ -7,7 +7,8 @@ interface DisplayMoviesProps {
 }
 
 const DisplayMovies: React.FC<DisplayMoviesProps> = ({ category }) => {
-  const [listOfMovies,setListOfMovies] = useState([])
+  const [dataFromApi,setDataFromApi] = useState({})
+  const [listOfMovies,setListOfMovies] = useState<{}[]>([])
   let { loading, error, data } = useTypedSelector((state):state.MoviesState => {
     if (category === 'top-rated') {
       return state.moviesByTopRated
@@ -16,7 +17,11 @@ const DisplayMovies: React.FC<DisplayMoviesProps> = ({ category }) => {
   })
 
   useEffect(()=>{
-  },[])
+    setDataFromApi(data)
+    Object.keys(dataFromApi).length && setListOfMovies(dataFromApi?.results)
+  },[data])
+
+  console.log({dataFromApi,loading,error})
 
   return <h1>{category}</h1>
 }

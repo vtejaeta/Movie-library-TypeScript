@@ -8,11 +8,11 @@ const searchMoviesByTopRatedReducer = (
 ): MoviesState => {
   switch (action.type) {
     case SearchMoviesByTopRatedActionType.SEARCH_MOVIES_BY_TOP_RATED:
-      return { loading: true, error: null, data: {} }
+      return { loading: true, error: null, data: null }
     case SearchMoviesByTopRatedActionType.SEARCH_MOVIES_BY_TOP_RATED_SUCCESS:
       return { loading: false, error: null, data: action.payload }
     case SearchMoviesByTopRatedActionType.SEARCH_MOVIES_BY_TOP_RATED_ERROR:
-      return { loading: false, error: action.payload, data: {} }
+      return { loading: false, error: action.payload, data: null }
     default:
       return state
   }
