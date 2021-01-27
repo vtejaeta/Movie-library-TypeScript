@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 
 const Footer: React.FC = () => {
   return (
+    // footer credits
     <footer>
       <Container>
         <Row>
