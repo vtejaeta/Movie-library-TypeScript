@@ -2,6 +2,8 @@ import { useTypedSelector } from '../hooks/useTypedSelector'
 import { useEffect, useState } from 'react'
 import { state } from '../redux-part/exports'
 import MoviesCarousel from './MoviesCarousel'
+import Header from './Header'
+import Footer from './Footer'
 
 interface DisplayMoviesProps {
   category: string
@@ -41,9 +43,14 @@ const DisplayMovies: React.FC<DisplayMoviesProps> = ({ category }) => {
 
   return (
     <>
-      {listOfMovies.length && (
+      <Header />
+      {listOfMovies.length ? (
         <MoviesCarousel topFourMovies={listOfMovies.slice(0, 4)} />
+      ) : (
+        <h1>Loading</h1>
       )}
+      <main></main>
+      <Footer />
     </>
   )
 }
