@@ -1,29 +1,51 @@
 import { useTypedSelector } from '../hooks/useTypedSelector'
-import { useEffect,useState } from 'react'
-import {state} from '../redux-part/exports'
+import { useEffect, useState } from 'react'
+import { state } from '../redux-part/exports'
+import MoviesCarousel from './MoviesCarousel'
 
 interface DisplayMoviesProps {
   category: string
 }
 
 const DisplayMovies: React.FC<DisplayMoviesProps> = ({ category }) => {
-  const [dataFromApi,setDataFromApi] = useState({})
-  const [listOfMovies,setListOfMovies] = useState<{}[]>([])
-  let { loading, error, data } = useTypedSelector((state):state.MoviesState => {
-    if (category === 'top-rated') {
-      return state.moviesByTopRated
+  const [dataFromApi, setDataFromApi] = useState({})
+  const [listOfMovies, setListOfMovies] = useState<{ [key: string]: any }[]>([])
+  let { loading, error, data } = useTypedSelector(
+    (state): state.MoviesState => {
+      if (category === 'top-rated') {
+        return state.moviesByTopRated
+      }
+      return state.moviesByPopular
     }
-    return state.moviesByPopular
-  })
+  )
 
-  useEffect(()=>{
-    setDataFromApi(data)
-    Object.keys(dataFromApi).length && setListOfMovies(dataFromApi?.results)
-  },[data])
+  useEffect(() => {
+    data && setDataFromApi(data)
+    data && setListOfMovies(data.results)
+  }, [data])
 
-  console.log({dataFromApi,loading,error})
+  const renderCarousel = () => {
+    return listOfMovies.slice(0, 4).map((movie) => {
+      let backdrop_path = movie.backdrop_path
+      return (
+        <figure key={Math.random()}>
+          <img
+            alt='movie-poster'
+            src={`https://image.tmdb.org/t/p/original${movie && backdrop_path}`}
+            className='movie-carousel-poster'
+          />
+        </figure>
+      )
+    })
+  }
 
-  return <h1>{category}</h1>
+  return (
+    <>
+      {listOfMovies.length && (
+        <MoviesCarousel topFourMovies={listOfMovies.slice(0, 4)} />
+      )}
+    </>
+  )
 }
 
 export default DisplayMovies

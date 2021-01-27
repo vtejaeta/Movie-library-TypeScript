@@ -1,0 +1,28 @@
+.movie-carousel-poster {
+  display: block;
+  height: 250px;
+  min-width: 150px;
+  max-width: 650px;
+}
+
+/* carousel */
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item.active {
+  display: flex;
+}
+
+.carousel img {
+  max-height: 300px;
+  width: 850px;
+}
+
+.carousel {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+header {
+  margin: 30px 0;
+  padding: 30px;
+}
