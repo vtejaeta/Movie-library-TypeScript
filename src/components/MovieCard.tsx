@@ -1,4 +1,5 @@
 import { Card } from 'react-bootstrap'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 interface MovieProps {
   movie: { [key: string]: any }
@@ -7,8 +8,7 @@ interface MovieProps {
 const MovieCard: React.FC<MovieProps> = ({ movie }) => {
   return (
     <Card className='my-3'>
-      <Card.Img
-        variant='top'
+      <LazyLoadImage
         src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
       />
     </Card>
