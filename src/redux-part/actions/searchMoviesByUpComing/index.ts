@@ -1,9 +1,9 @@
 interface searchMoviesByUpComingAction {
-    type: 'search_movies_by_popular'
+    type: 'search_movies_by_upcoming'
   }
   
   interface searchMoviesByUpComingSuccessAction {
-    type: 'search_movies_by_popular_success'
+    type: 'search_movies_by_upcoming_success'
     payload: {
       page: number
       results: []
@@ -13,7 +13,7 @@ interface searchMoviesByUpComingAction {
   }
   
   interface searchMoviesByUpComingErrorAction {
-    type: 'search_movies_by_popular_error'
+    type: 'search_movies_by_upcoming_error'
     payload: string
   }
   
