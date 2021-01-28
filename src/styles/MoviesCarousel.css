@@ -14,15 +14,15 @@
 
 .carousel img {
   max-height: 300px;
-  width: 850px;
+  width: 1050px;
 }
 
 .carousel {
-  max-width: 850px;
+  max-width: 1050px;
   margin: 0 auto;
 }
 
 header {
   margin: 30px 0;
-  padding: 30px;
+  padding: 0 18px;
 }

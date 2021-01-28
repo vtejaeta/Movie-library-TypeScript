@@ -4,6 +4,7 @@ import { state } from '../redux-part/exports'
 import MoviesCarousel from './MoviesCarousel'
 import Header from './Header'
 import Footer from './Footer'
+import LoadingSpinner from './LoadingSpinner'
 
 interface DisplayMoviesProps {
   category: string
@@ -47,7 +48,7 @@ const DisplayMovies: React.FC<DisplayMoviesProps> = ({ category }) => {
       {listOfMovies.length ? (
         <MoviesCarousel topFourMovies={listOfMovies.slice(0, 4)} />
       ) : (
-        <h1>Loading</h1>
+        <LoadingSpinner/>
       )}
       <main></main>
       <Footer />
