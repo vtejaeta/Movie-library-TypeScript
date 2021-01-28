@@ -1,0 +1,12 @@
+.card {
+  height: 350px;
+  width: 230px;
+  margin: auto;
+}
+
+.card > img {
+  display: 'block';
+  vertical-align: middle;
+  height: 350px;
+  width: 230px;
+}

@@ -7,6 +7,9 @@ import Footer from './Footer'
 import LoadingSpinner from './LoadingSpinner'
 import { Col, Container, Row, Card, CardGroup } from 'react-bootstrap'
 import MovieCard from './MovieCard'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+// import 'react-lazy-load-image-component/src/effects/blur.css'
+import '../styles/DisplayMovies.css'
 
 interface DisplayMoviesProps {
   category: string
@@ -36,7 +39,13 @@ const DisplayMovies: React.FC<DisplayMoviesProps> = ({ category }) => {
     return listOfMovies.map((movie) => {
       return (
         <Col sm={12} md={6} lg={4} xl={3} key={Math.random()}>
-          <MovieCard movie={movie} />
+          {/* <MovieCard movie={movie} /> */}
+          <Card className='my-3'>
+            <LazyLoadImage
+              alt={movie.original_title}
+              src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+            />
+          </Card>
         </Col>
       )
     })
