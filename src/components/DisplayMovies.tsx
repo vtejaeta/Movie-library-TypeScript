@@ -35,14 +35,8 @@ const DisplayMovies: React.FC<DisplayMoviesProps> = ({ category }) => {
   const renderMovies = () => {
     return listOfMovies.map((movie) => {
       return (
-        <Col>
-        <MovieCard movie={movie}/>
-          <Card key={Math.random()}>
-            <Card.Img
-              variant='top'
-              src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-            />
-          </Card>
+        <Col sm={12} md={6} lg={4} xl={3} key={Math.random()}>
+          <MovieCard movie={movie} />
         </Col>
       )
     })
@@ -57,16 +51,11 @@ const DisplayMovies: React.FC<DisplayMoviesProps> = ({ category }) => {
         <LoadingSpinner />
       )}
       <main>
-        {loading ? <LoadingSpinner /> : <></>}
-        {listOfMovies ? (
-          <Row>
-            <Col xs={6} md={4}>
-              <CardGroup>{renderMovies()}</CardGroup>
-            </Col>
-          </Row>
-        ) : (
-          <></>
-        )}
+        <Container>
+          {loading ? <LoadingSpinner /> : <></>}
+          <h1 className='ml-5 mt-4'>{category.toUpperCase()} Movies</h1>
+          {listOfMovies ? <Row className='p-5'>{renderMovies()}</Row> : <></>}
+        </Container>
       </main>
       <Footer />
     </>
