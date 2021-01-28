@@ -34,7 +34,7 @@ const Header: React.FC = () => {
               <FormControl
                 type='text'
                 placeholder='Search'
-                className='mr-sm-2 ml-sm-5' 
+                className='mr-sm-2 ml-sm-5'
               />
               <Button variant='outline-success' className='p-2'>
                 Search
