@@ -2,8 +2,6 @@ import { useTypedSelector } from '../hooks/useTypedSelector'
 import { useEffect, useState } from 'react'
 import { state } from '../redux-part/exports'
 import MoviesCarousel from './MoviesCarousel'
-import Header from './Header'
-import Footer from './Footer'
 import LoadingSpinner from './LoadingSpinner'
 import { Col, Container, Row, Card } from 'react-bootstrap'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
@@ -18,13 +16,12 @@ interface MatchParam {
 }
 
 const DisplayMovies: React.FC<RouteComponentProps<MatchParam>> = ({
-  match,history
+  match,
+  history,
 }) => {
   const { category } = match.params
   const [errorParam, setErrorParam] = useState(false)
-  const currentPage = history.location.search
-  ? parseInt(history.location.search.slice(6))
-  : 1;
+  const [currentPage, setCurrentPage] = useState(1)
   const {
     searchMoviesByPopular,
     searchMoviesByTopRated,
@@ -42,20 +39,22 @@ const DisplayMovies: React.FC<RouteComponentProps<MatchParam>> = ({
   )
 
   useEffect(() => {
-    if (category === 'popular') {
-      searchMoviesByPopular(1)
-      setErrorParam(false)
-    } else if (category === 'top-rated') {
-      setErrorParam(false)
-      searchMoviesByTopRated(1)
-    } else if (category === 'upcoming') {
-      searchMoviesByUpComing(1)
-      setErrorParam(false)
-    } else {
-      setErrorParam(true)
-    }
-    // eslint-disable-next-line
-  }, [category])
+    setCurrentPage(
+      history.location.search ? Number(history.location.search.slice(6)) : 1
+    )
+      if (category === 'popular') {
+        searchMoviesByPopular(currentPage)
+        setErrorParam(false)
+      } else if (category === 'top-rated') {
+        setErrorParam(false)
+        searchMoviesByTopRated(currentPage)
+      } else if (category === 'upcoming') {
+        searchMoviesByUpComing(currentPage)
+        setErrorParam(false)
+      } else {
+        setErrorParam(true)
+      }
+  }, [category, history.location.search, currentPage, history])
 
   const renderMovies = () => {
     return data?.results.map((movie: any) => {
@@ -97,7 +96,10 @@ const DisplayMovies: React.FC<RouteComponentProps<MatchParam>> = ({
             ) : (
               <></>
             )}
-            <Pagination totalPages={data?.total_pages} currentPage={currentPage} />
+            <Pagination
+              totalPages={data?.total_pages}
+              currentPage={currentPage}
+            />
           </Container>
         </main>
       )}
