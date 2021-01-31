@@ -1,7 +1,5 @@
-import MoviesListByPopular from './components/MoviesListByPopular'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
-import MoviesListByUpComing from './components/MoviesListByUpComing'
-import MoviesListByTopRated from './components/MoviesListByTopRated'
+import DisplayMovies from './components/DisplayMovies'
 
 const App = () => {
   return (
@@ -11,9 +9,7 @@ const App = () => {
           <Route exact path='/'>
             <Redirect to='/browse/popular' />
           </Route>
-          <Route path='/browse/popular' component={MoviesListByPopular} />
-          <Route path='/browse/top-rated' component={MoviesListByTopRated} />
-          <Route path='/browse/upcoming' component={MoviesListByUpComing} />
+          <Route path='/browse/:category' component={DisplayMovies} />
         </Switch>
       </BrowserRouter>
     </>

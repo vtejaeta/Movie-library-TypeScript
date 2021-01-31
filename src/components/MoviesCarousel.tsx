@@ -1,5 +1,5 @@
 import '../styles/MoviesCarousel.css'
-import { Carousel, Image } from 'react-bootstrap'
+import { Carousel } from 'react-bootstrap'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 interface TopFourMovies {
