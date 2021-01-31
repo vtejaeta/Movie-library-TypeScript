@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import '../styles/Pagination.css'
 
@@ -18,11 +18,11 @@ const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage }) => {
 
   return (
     <>
-      {currentPage == 1 ? (
+      {currentPage === 1 ? (
         <section className='page-container single-btn'>
           <button className='page-btn float-right'>Page 2</button>
         </section>
-      ) : currentPage == totalPages ? (
+      ) : currentPage === totalPages ? (
         <section className='page-container single-btn'>
           <button className='page-btn float-left'>
             Page {totalPages - 1}
