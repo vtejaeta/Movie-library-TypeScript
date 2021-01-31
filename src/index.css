@@ -32,3 +32,35 @@ h3,
 h4 {
   overflow: hidden;
 }
+
+.go-home {
+  cursor: pointer;
+  border: 1px solid;
+  outline: none;
+  background-color: #fff;
+  color: #343a40;
+  display: inline-block;
+  padding: 10px 26px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.go-home:hover {
+  color: white;
+  background-color: #343a40;
+}
+
+.error-component {
+  padding-top: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 300px;
+}
+
+@media screen and (max-width: 768px) {
+  * {
+    font-size: 12px;
+  }
+}

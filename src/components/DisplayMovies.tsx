@@ -1,5 +1,5 @@
 import { useTypedSelector } from '../hooks/useTypedSelector'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { state } from '../redux-part/exports'
 import MoviesCarousel from './MoviesCarousel'
 import Header from './Header'
@@ -10,63 +10,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import '../styles/DisplayMovies.css'
 import { RouteComponentProps } from 'react-router-dom'
 import { useActions } from '../hooks/useActions'
-
-
-// const DisplayMovies: React.FC = () => {
-//   const [dataFromApi, setDataFromApi] = useState({})
-//   const [listOfMovies, setListOfMovies] = useState<{ [key: string]: any }[]>([])
-//   let [category,setCategory] = useState('popular')
-
-  // let { loading, error, data } = useTypedSelector(
-  //   (state): state.MoviesState => {
-  //     if (category === 'top-rated') {
-  //       return state.moviesByTopRated
-  //     } else if (category === 'upcoming') {
-  //       return state.moviesByUpComing
-  //     }
-  //     return state.moviesByPopular
-  //   }
-  // )
-
-//   useEffect(() => {
-//     data && setDataFromApi(data)
-//     data && setListOfMovies(data.results)
-//   }, [data])
-
-//   const renderMovies = () => {
-//     return listOfMovies.map((movie) => {
-//       return (
-//         <Col sm={12} md={6} lg={4} xl={3} key={Math.random()}>
-//           <Card className='my-3'>
-//             <LazyLoadImage
-//               alt={movie.original_title}
-//               src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-//             />
-//           </Card>
-//         </Col>
-//       )
-//     })
-//   }
-
-//   return (
-//     <>
-//       <Header />
-//       {listOfMovies.length ? (
-//         <MoviesCarousel topFourMovies={listOfMovies.slice(0, 4)} />
-//       ) : (
-//         <LoadingSpinner />
-//       )}
-//       <main>
-//         <Container>
-//           {loading ? <LoadingSpinner /> : <></>}
-//           <h1 className='ml-4 mt-4'>{category.toUpperCase()} Movies</h1>
-//           {listOfMovies ? <Row className='p-5'>{renderMovies()}</Row> : <></>}
-//         </Container>
-//       </main>
-//       <Footer />
-//     </>
-//   )
-// }
+import ErrorComponent from './ErrorComponent'
 
 interface MatchParam {
   category?: string
@@ -76,6 +20,8 @@ const DisplayMovies: React.FC<RouteComponentProps<MatchParam>> = ({
   match,
 }) => {
   const { category } = match.params
+  const [errorParam, setErrorParam] = useState(false)
+  const [numberOfPages, setNumberOfPages] = useState<number>()
   const {
     searchMoviesByPopular,
     searchMoviesByTopRated,
@@ -92,18 +38,24 @@ const DisplayMovies: React.FC<RouteComponentProps<MatchParam>> = ({
     }
   )
 
-  useEffect(()=>{
-    if(category === 'popular'){
+  useEffect(() => {
+    if (category === 'popular') {
       searchMoviesByPopular(1)
-    }else if(category === 'top-rated'){
+      setErrorParam(false)
+    } else if (category === 'top-rated') {
+      setErrorParam(false)
       searchMoviesByTopRated(1)
-    }else if(category === 'upcoming'){
+    } else if (category === 'upcoming') {
       searchMoviesByUpComing(1)
+      setErrorParam(false)
+    } else {
+      setErrorParam(true)
     }
-  },[category])
+    // eslint-disable-next-line
+  }, [category])
 
-    const renderMovies = () => {
-    return data?.results.map((movie:any) => {
+  const renderMovies = () => {
+    return data?.results.map((movie: any) => {
       return (
         <Col sm={12} md={6} lg={4} xl={3} key={Math.random()}>
           <Card className='my-3'>
@@ -116,23 +68,40 @@ const DisplayMovies: React.FC<RouteComponentProps<MatchParam>> = ({
       )
     })
   }
-  
+
+  console.log(data)
+
   return (
     <>
-      <Header />
-      {data?.results.length ? (
-        <MoviesCarousel topFourMovies={data?.results.slice(0, 4)} />
+      {!errorParam ? (
+        data?.results.length ? (
+          <MoviesCarousel topFourMovies={data?.results.slice(0, 4)} />
+        ) : (
+          <LoadingSpinner />
+        )
       ) : (
-        <LoadingSpinner />
+        <></>
       )}
-      <main>
-        <Container>
-          {loading ? <LoadingSpinner /> : <></>}
-          {category ? <h1 className='ml-4 mt-4'>{category.toUpperCase()} Movies</h1>:<></>}
-          {data?.results ? <Row className='p-5'>{renderMovies()}</Row> : <></>}
-        </Container>
-      </main>
-      <Footer />
+      {!errorParam && (
+        <main>
+          <Container>
+            {loading ? <LoadingSpinner /> : <></>}
+            {category ? (
+              <h1 className='ml-4 mt-4'>{category.toUpperCase()} Movies</h1>
+            ) : (
+              <></>
+            )}
+            {data?.results ? (
+              <Row className='p-5'>{renderMovies()}</Row>
+            ) : (
+              <></>
+            )}
+          </Container>
+        </main>
+      )}
+      {errorParam && (
+        <ErrorComponent/>
+      )}
     </>
   )
 }
