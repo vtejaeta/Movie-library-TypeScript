@@ -11,17 +11,20 @@ import '../styles/DisplayMovies.css'
 import { RouteComponentProps } from 'react-router-dom'
 import { useActions } from '../hooks/useActions'
 import ErrorComponent from './ErrorComponent'
+import Pagination from './Pagination'
 
 interface MatchParam {
   category?: string
 }
 
 const DisplayMovies: React.FC<RouteComponentProps<MatchParam>> = ({
-  match,
+  match,history
 }) => {
   const { category } = match.params
   const [errorParam, setErrorParam] = useState(false)
-  const [numberOfPages, setNumberOfPages] = useState<number>()
+  const currentPage = history.location.search
+  ? parseInt(history.location.search.slice(6))
+  : 1;
   const {
     searchMoviesByPopular,
     searchMoviesByTopRated,
@@ -69,8 +72,6 @@ const DisplayMovies: React.FC<RouteComponentProps<MatchParam>> = ({
     })
   }
 
-  console.log(data)
-
   return (
     <>
       {!errorParam ? (
@@ -96,12 +97,11 @@ const DisplayMovies: React.FC<RouteComponentProps<MatchParam>> = ({
             ) : (
               <></>
             )}
+            <Pagination totalPages={data?.total_pages} currentPage={currentPage}/>
           </Container>
         </main>
       )}
-      {errorParam && (
-        <ErrorComponent/>
-      )}
+      {errorParam && <ErrorComponent />}
     </>
   )
 }
