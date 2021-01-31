@@ -97,7 +97,7 @@ const DisplayMovies: React.FC<RouteComponentProps<MatchParam>> = ({
             ) : (
               <></>
             )}
-            <Pagination totalPages={data?.total_pages} currentPage={currentPage}/>
+            <Pagination totalPages={data?.total_pages} currentPage={currentPage} />
           </Container>
         </main>
       )}
