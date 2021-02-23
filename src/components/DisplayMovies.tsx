@@ -9,7 +9,7 @@ import '../styles/DisplayMovies.css'
 import { RouteComponentProps } from 'react-router-dom'
 import { useActions } from '../hooks/useActions'
 import ErrorComponent from './ErrorComponent'
-import Pagination from './Pagination'
+import Pagination from './shared/pagination/Pagination'
 
 interface MatchParam {
   category?: string
