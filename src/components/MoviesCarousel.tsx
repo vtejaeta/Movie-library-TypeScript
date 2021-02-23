@@ -15,7 +15,7 @@ const MoviesCarousel: React.FC<TopFourMovies> = ({ topFourMovies }) => {
             <Carousel.Item key={movie.id}>
               <LazyLoadImage
                 alt={movie.original_title}
-                src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
               />
             </Carousel.Item>
           )
