@@ -7,7 +7,7 @@ import {
   FormControl,
 } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
-import '../styles/Header.css'
+import '../../../assets/css/Header.css'
 
 const Header: React.FC = () => {
   return (

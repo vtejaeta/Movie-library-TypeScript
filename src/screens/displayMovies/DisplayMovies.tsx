@@ -1,15 +1,15 @@
-import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { useEffect, useState } from 'react'
+import { Col, Container, Row, Card } from 'react-bootstrap'
+import { RouteComponentProps } from 'react-router-dom'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { useTypedSelector } from '../../hooks/useTypedSelector'
+import { useActions } from '../../hooks/useActions'
 import { state } from '../../redux-part/exports'
+import ErrorScreen from '../errorScreen/ErrorScreen'
 import MoviesCarousel from '../../components/layout/carousel/MoviesCarousel'
 import LoadingSpinner from '../../components/shared/spinner/LoadingSpinner'
-import { Col, Container, Row, Card } from 'react-bootstrap'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
-import '../styles/DisplayMovies.css'
-import { RouteComponentProps } from 'react-router-dom'
-import { useActions } from '../../hooks/useActions'
-import ErrorScreen from '../errorScreen/ErrorScreen'
 import Pagination from '../../components/shared/pagination/Pagination'
+import '../../assets/css/DisplayMovies.css'
 
 interface MatchParam {
   category?: string
@@ -70,7 +70,7 @@ const DisplayMovies: React.FC<RouteComponentProps<MatchParam>> = ({
       )
     })
   }
-
+  console.log({loading,error,data})
   return (
     <>
       {!errorParam ? (

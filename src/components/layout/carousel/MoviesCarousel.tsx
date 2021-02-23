@@ -1,4 +1,4 @@
-import '../styles/MoviesCarousel.css'
+import '../../../assets/css/MoviesCarousel.css'
 import { Carousel } from 'react-bootstrap'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 

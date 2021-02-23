@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useHistory, Link } from 'react-router-dom'
-import '../styles/Pagination.css'
+import '../../../assets/css/Pagination.css'
 
 interface PaginationProps {
   totalPages?: number
