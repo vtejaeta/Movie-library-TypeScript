@@ -1,7 +1,7 @@
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import DisplayMovies from './components/DisplayMovies'
 import ErrorComponent from './components/ErrorComponent'
-import Footer from './components/Footer'
+import Footer from './components/layout/footer/Footer'
 import Header from './components/layout/header/Header'
 
 const App = () => {
