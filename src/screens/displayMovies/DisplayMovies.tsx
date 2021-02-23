@@ -10,6 +10,7 @@ import MoviesCarousel from '../../components/layout/carousel/MoviesCarousel'
 import LoadingSpinner from '../../components/shared/spinner/LoadingSpinner'
 import Pagination from '../../components/shared/pagination/Pagination'
 import '../../assets/css/DisplayMovies.css'
+import useAccessMoviesData from '../../hooks/useAccessMoviesData'
 
 interface MatchParam {
   category?: string
@@ -27,33 +28,35 @@ const DisplayMovies: React.FC<RouteComponentProps<MatchParam>> = ({
     searchMoviesByTopRated,
     searchMoviesByUpComing,
   } = useActions()
-  let { loading, error, data } = useTypedSelector(
-    (state): state.MoviesState => {
-      if (category === 'top-rated') {
-        return state.moviesByTopRated
-      } else if (category === 'upcoming') {
-        return state.moviesByUpComing
-      }
-      return state.moviesByPopular
-    }
-  )
+
+  // let { loading, error, data } = useTypedSelector(
+  //   (state): state.MoviesState => {
+  //     if (category === 'top-rated') {
+  //       return state.moviesByTopRated
+  //     } else if (category === 'upcoming') {
+  //       return state.moviesByUpComing
+  //     }
+  //     return state.moviesByPopular
+  //   }
+  // )
+  let { loading, error, data } = useAccessMoviesData(category)
 
   useEffect(() => {
     setCurrentPage(
       history.location.search ? Number(history.location.search.slice(6)) : 1
     )
-      if (category === 'popular') {
-        searchMoviesByPopular(currentPage)
-        setErrorParam(false)
-      } else if (category === 'top-rated') {
-        setErrorParam(false)
-        searchMoviesByTopRated(currentPage)
-      } else if (category === 'upcoming') {
-        searchMoviesByUpComing(currentPage)
-        setErrorParam(false)
-      } else {
-        setErrorParam(true)
-      }
+    if (category === 'popular') {
+      searchMoviesByPopular(currentPage)
+      setErrorParam(false)
+    } else if (category === 'top-rated') {
+      setErrorParam(false)
+      searchMoviesByTopRated(currentPage)
+    } else if (category === 'upcoming') {
+      searchMoviesByUpComing(currentPage)
+      setErrorParam(false)
+    } else {
+      setErrorParam(true)
+    }
   }, [category, history.location.search, currentPage, history])
 
   const renderMovies = () => {
@@ -70,7 +73,9 @@ const DisplayMovies: React.FC<RouteComponentProps<MatchParam>> = ({
       )
     })
   }
-  console.log({loading,error,data})
+
+  console.log({ loading, error, data })
+
   return (
     <>
       {!errorParam ? (
