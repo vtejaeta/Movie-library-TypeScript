@@ -8,7 +8,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import '../styles/DisplayMovies.css'
 import { RouteComponentProps } from 'react-router-dom'
 import { useActions } from '../../hooks/useActions'
-import ErrorComponent from '../../components/ErrorComponent'
+import ErrorScreen from '../errorScreen/ErrorScreen'
 import Pagination from '../../components/shared/pagination/Pagination'
 
 interface MatchParam {
@@ -103,7 +103,7 @@ const DisplayMovies: React.FC<RouteComponentProps<MatchParam>> = ({
           </Container>
         </main>
       )}
-      {errorParam && <ErrorComponent />}
+      {errorParam && <ErrorScreen />}
     </>
   )
 }
