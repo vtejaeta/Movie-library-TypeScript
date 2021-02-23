@@ -1,15 +1,15 @@
-import { useTypedSelector } from '../hooks/useTypedSelector'
+import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { useEffect, useState } from 'react'
-import { state } from '../redux-part/exports'
-import MoviesCarousel from './layout/carousel/MoviesCarousel'
-import LoadingSpinner from './shared/spinner/LoadingSpinner'
+import { state } from '../../redux-part/exports'
+import MoviesCarousel from '../../components/layout/carousel/MoviesCarousel'
+import LoadingSpinner from '../../components/shared/spinner/LoadingSpinner'
 import { Col, Container, Row, Card } from 'react-bootstrap'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import '../styles/DisplayMovies.css'
 import { RouteComponentProps } from 'react-router-dom'
-import { useActions } from '../hooks/useActions'
-import ErrorComponent from './ErrorComponent'
-import Pagination from './shared/pagination/Pagination'
+import { useActions } from '../../hooks/useActions'
+import ErrorComponent from '../../components/ErrorComponent'
+import Pagination from '../../components/shared/pagination/Pagination'
 
 interface MatchParam {
   category?: string
