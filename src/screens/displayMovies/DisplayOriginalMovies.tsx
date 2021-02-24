@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Col, Container, Row, Card } from 'react-bootstrap'
 import { RouteComponentProps } from 'react-router-dom'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useActions } from '../../hooks/useActions'
 import ErrorScreen from '../errorScreen/ErrorScreen'
 import MoviesCarousel from '../../components/layout/carousel/MoviesCarousel'
@@ -15,7 +14,7 @@ interface MatchParam {
   category?: string
 }
 
-const DisplayMovies: React.FC<RouteComponentProps<MatchParam>> = ({
+const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
   match,
   history,
 }) => {
@@ -62,44 +61,54 @@ const DisplayMovies: React.FC<RouteComponentProps<MatchParam>> = ({
   //     )
   //   })
   // }
-  console.log({enteredPage:Number(history.location.search.slice(6)),category,errorParam,currentPage,loading,error,data});
-  return <>Testing</>
-  // return (
-  //   <>
-  //     {!errorParam ? (
-  //       data?.results.length ? (
-  //         <MoviesCarousel topFourMovies={data?.results.slice(0, 4)} />
-  //       ) : (
-  //         <LoadingSpinner />
-  //       )
-  //     ) : (
-  //       <></>
-  //     )}
-  //     {!errorParam && (
-  //       <main>
-  //         <Container>
-  //           {loading ? <LoadingSpinner /> : <></>}
-  //           {category ? (
-  //             <h1 className='ml-4 mt-4'>{category.toUpperCase()} Movies</h1>
-  //           ) : (
-  //             <></>
-  //           )}
-  //           {data?.results ? (
-  //             // <Row className='p-5'>{renderMovies()}</Row>
-  //             <Row className='p-5'><MoviesGrid/></Row> 
-  //           ) : (
-  //             <></>
-  //           )}
-  //           <Pagination
-  //             totalPages={data?.total_pages}
-  //             currentPage={currentPage}
-  //           />
-  //         </Container>
-  //       </main>
-  //     )}
-  //     {errorParam && <ErrorScreen />}
-  //   </>
-  // )
+
+  return (
+    <>
+      {(errorParam || error) && <ErrorScreen />}
+      {!error && !data && !loading && <LoadingSpinner />}
+      {loading && (
+        <>
+          <MoviesCarousel loadingStatus={'loading'} />
+          <main>
+            <Container>
+              {category && (
+                <h1 className='ml-4 mt-4'>{category.toUpperCase()} Movies</h1>
+              )}
+              <Row className='p-5'>
+                <MoviesGrid loadingStatus='loading' category={category} />
+              </Row>
+              <Pagination
+                totalPages={data?.total_pages}
+                currentPage={currentPage}
+              />
+            </Container>
+          </main>
+        </>
+      )}
+      {!error && !loading && data && (
+        <>
+          <MoviesCarousel
+            topFourMovies={data?.results.slice(0, 4)}
+            loadingStatus={'loaded'}
+          />
+          <main>
+            <Container>
+              {category && (
+                <h1 className='ml-4 mt-4'>{category.toUpperCase()} Movies</h1>
+              )}
+              <Row className='p-5'>
+                <MoviesGrid loadingStatus='loaded' category={category} />
+              </Row>
+              <Pagination
+                totalPages={data?.total_pages}
+                currentPage={currentPage}
+              />
+            </Container>
+          </main>
+        </>
+      )}
+    </>
+  )
 }
 
-export default DisplayMovies
+export default DisplayOriginalMovies

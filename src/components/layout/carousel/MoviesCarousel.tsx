@@ -1,25 +1,38 @@
 import '../../../assets/css/MoviesCarousel.css'
-import { Carousel } from 'react-bootstrap'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { Carousel,Image } from 'react-bootstrap'
+// import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 interface TopFourMovies {
-  topFourMovies: { [key: string]: any }[]
+  topFourMovies?: { [key: string]: any }[]
+  loadingStatus: string
 }
 
-const MoviesCarousel: React.FC<TopFourMovies> = ({ topFourMovies }) => {
+const MoviesCarousel: React.FC<TopFourMovies> = ({
+  topFourMovies,
+  loadingStatus,
+}) => {
   const renderCarousel = () => {
     return (
       <Carousel className='bg-dark'>
-        {topFourMovies.map((movie) => {
-          return (
-            <Carousel.Item key={movie.id}>
-              <LazyLoadImage
-                alt={movie.original_title}
-                src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-              />
+        {loadingStatus == 'loaded' ? (
+          topFourMovies?.map((movie) => {
+            return (
+              <Carousel.Item key={movie.id}>
+                <Image
+                  alt={movie.original_title}
+                  src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+                  className={'movie-thumbnail'}
+                />
+              </Carousel.Item>
+            )
+          })
+        ) : (
+          Array(4).fill(1).map(()=>{
+            return <Carousel.Item key={Math.random()} className='loading'>
+              <div className="dummy-carousel-image"></div>
             </Carousel.Item>
-          )
-        })}
+          })
+        )}
       </Carousel>
     )
   }

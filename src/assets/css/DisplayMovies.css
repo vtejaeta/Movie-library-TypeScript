@@ -10,3 +10,7 @@
   height: 350px;
   width: 230px;
 }
+
+.loaded.card {
+  background-color: #ccc;
+}

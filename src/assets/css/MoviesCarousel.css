@@ -12,9 +12,22 @@
   display: flex;
 }
 
+.dummy-carousel-image {
+  background-image: linear-gradient(
+    90deg,
+    rgba(lightgrey, 0) 0,
+    rgba(lightgrey, 0.8) 50%,
+    rgba(lightgrey, 0) 100%
+  ) !important;
+}
+
 .carousel img {
   max-height: 300px;
   width: 1050px;
+}
+
+.loading.carousel-item {
+  height: 250px;
 }
 
 .carousel {
