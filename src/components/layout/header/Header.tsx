@@ -20,13 +20,13 @@ const Header: React.FC = () => {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='mr-auto'>
-              <LinkContainer to='/browse/popular'>
+              <LinkContainer to='/browse/popular/1'>
                 <Nav.Link>Popular</Nav.Link>
               </LinkContainer>
-              <LinkContainer to='/browse/top-rated'>
+              <LinkContainer to='/browse/top-rated/1'>
                 <Nav.Link>Top Rated</Nav.Link>
               </LinkContainer>
-              <LinkContainer to='/browse/upcoming'>
+              <LinkContainer to='/browse/upcoming/1'>
                 <Nav.Link>Upcoming</Nav.Link>
               </LinkContainer>
             </Nav>

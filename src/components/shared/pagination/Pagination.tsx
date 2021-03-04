@@ -26,13 +26,13 @@ const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage }) => {
     <>
       {currentPage === 1 ? (
         <section className='page-container single-btn' onClick={scrollTop}>
-          <Link to={'?page=2'}>
+          <Link to={'2'}>
             <button className='page-btn float-right'>Page 2</button>
           </Link>
         </section>
       ) : currentPage === totalPages ? (
         <section className='page-container single-btn'  onClick={scrollTop}>
-          <Link to={`?page=${currentPage - 1}`}>
+          <Link to={`${currentPage - 1}`}>
             <button className='page-btn float-left'>
               Page {totalPages - 1}
             </button>
@@ -40,10 +40,10 @@ const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage }) => {
         </section>
       ) : (
         <section className='page-container d-flex justify-content-between'  onClick={scrollTop}>
-          <Link to={`?page=${currentPage - 1}`}>
+          <Link to={`${currentPage - 1}`}>
             <button className='page-btn'>Page {currentPage - 1}</button>
           </Link>
-          <Link to={`?page=${currentPage + 1}`}>
+          <Link to={`${currentPage + 1}`}>
             <button className='page-btn'>Page {currentPage + 1}</button>
           </Link>
         </section>

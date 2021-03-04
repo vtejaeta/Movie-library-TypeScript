@@ -12,6 +12,7 @@ import MoviesGrid from '../../components/layout/moviesGrid/MoviesGrid'
 
 interface MatchParam {
   category?: string
+  page?: string
 }
 
 const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
@@ -19,8 +20,13 @@ const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
   history,
 }) => {
   const { category } = match.params
-  const [errorParam, setErrorParam] = useState(false)
-  const [currentPage, setCurrentPage] = useState(1)
+  const [errorParam, setErrorParam] = useState(Number(match.params.page) ? false:true)
+  // const [currentPage, setCurrentPage] = useState(
+  //   history.location.search ? parseInt(history.location.search.slice(6)) : 1
+  // )
+  const [currentPage, setCurrentPage] = useState(
+    match.params.page && Number(match.params.page) ? Number(match.params.page) : 1
+  )
   const {
     searchMoviesByPopular,
     searchMoviesByTopRated,
@@ -30,22 +36,35 @@ const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
   let { loading, error, data } = useAccessMoviesData(category)
 
   useEffect(() => {
-    setCurrentPage(
-      history.location.search ? Number(history.location.search.slice(6)) : 1
-    )
-    if (category === 'popular') {
-      searchMoviesByPopular(currentPage)
-      setErrorParam(false)
-    } else if (category === 'top-rated') {
-      setErrorParam(false)
-      searchMoviesByTopRated(currentPage)
-    } else if (category === 'upcoming') {
-      searchMoviesByUpComing(currentPage)
-      setErrorParam(false)
-    } else {
+    // setCurrentPage(
+    //   history.location.search ? parseInt(history.location.search.slice(6)) : 1
+    // )
+    match.params.page &&
+    Number(match.params.page) &&
+      !Number.isNaN(Number(match.params.page)) &&
+      Number(match.params.page) != currentPage &&
+      setCurrentPage(Number(match.params.page))
+    if (
+      match.params.page &&
+      !Number.isNaN(Number(match.params.page)) &&
+      Number(match.params.page) == currentPage
+    ) {
+      if (category === 'popular') {
+        searchMoviesByPopular(currentPage)
+        setErrorParam(false)
+      } else if (category === 'top-rated') {
+        setErrorParam(false)
+        searchMoviesByTopRated(currentPage)
+      } else if (category === 'upcoming') {
+        searchMoviesByUpComing(currentPage)
+        setErrorParam(false)
+      } else {
+        setErrorParam(true)
+      }
+    }else if(Number.isNaN(Number(match.params.page))){
       setErrorParam(true)
     }
-  }, [category, history.location.search, currentPage, history])
+  }, [category, match, currentPage])
 
   // const renderMovies = () => {
   //   return data?.results.map((movie: any) => {
@@ -62,10 +81,11 @@ const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
   //   })
   // }
 
+
   return (
     <>
       {(errorParam || error) && <ErrorScreen />}
-      {!error && !data && !loading && <LoadingSpinner />}
+      {/* {!errorParam && !error && !data && !loading && <LoadingSpinner />} */}
       {loading && (
         <>
           <MoviesCarousel loadingStatus={'loading'} />

@@ -43,7 +43,7 @@ const MoviesGrid: React.FC<MoviesGridProps> = ({ category, loadingStatus }) => {
               <Card className={`my-3 ${loadingStatus}`}>
                 <LazyLoadImage
                   alt={movie.original_title}
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
                   className={'movie-thumbnail'}
                   height={350}
                   width={230}
