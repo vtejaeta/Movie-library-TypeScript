@@ -36,9 +36,6 @@ const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
   let { loading, error, data } = useAccessMoviesData(category)
 
   useEffect(() => {
-    // setCurrentPage(
-    //   history.location.search ? parseInt(history.location.search.slice(6)) : 1
-    // )
     match.params.page &&
     Number(match.params.page) &&
       !Number.isNaN(Number(match.params.page)) &&

@@ -5,9 +5,11 @@ import {
   Button,
   Form,
   FormControl,
+  Dropdown,
 } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import '../../../assets/css/Header.css'
+import Example  from '../genreModal/GenreModal'
 
 const Header: React.FC = () => {
   return (
@@ -29,6 +31,7 @@ const Header: React.FC = () => {
               <LinkContainer to='/browse/upcoming/1'>
                 <Nav.Link>Upcoming</Nav.Link>
               </LinkContainer>
+                <Example/>
             </Nav>
             <Form inline>
               <FormControl
