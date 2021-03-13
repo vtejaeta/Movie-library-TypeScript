@@ -13,3 +13,10 @@ export const initialState = {
   error: null,
   data: null,
 }
+export interface GetGenreIdState{
+  loading: boolean;
+  error: string | null;
+  data: {
+    genres: { id: number; name: String }[];
+  } | null;
+}
