@@ -14,7 +14,7 @@ const MoviesCarousel: React.FC<TopFourMovies> = ({
   const renderCarousel = () => {
     return (
       <Carousel className='bg-dark'>
-        {loadingStatus == 'loaded' ? (
+        {loadingStatus === 'loaded' ? (
           topFourMovies?.map((movie) => {
             return (
               <Carousel.Item key={movie.id}>

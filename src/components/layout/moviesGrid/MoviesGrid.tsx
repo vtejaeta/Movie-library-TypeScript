@@ -1,5 +1,5 @@
 import { useTypedSelector } from '../../../hooks/useTypedSelector'
-import { Col, Container, Row, Card } from 'react-bootstrap'
+import { Col, Card } from 'react-bootstrap'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { state } from '../../../redux-part/exports'
 import '../../../assets/css/MoviesGrid.css'
@@ -27,7 +27,7 @@ const MoviesGrid: React.FC<MoviesGridProps> = ({ category, loadingStatus }) => {
   )
 
   const renderMovies = () => {
-    return loadingStatus == 'loading'
+    return loadingStatus === 'loading'
       ? Array(20)
           .fill(1)
           .map(() => {
