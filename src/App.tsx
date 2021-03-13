@@ -3,8 +3,6 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import Footer from './components/layout/footer/Footer'
 import Header from './components/layout/header/Header'
 
-// import DisplayOriginalMovies from './screens/displayMovies/DisplayOriginalMovies'
-// import ErrorScreen from './screens/errorScreen/ErrorScreen'
 
 const DisplayOriginalMovies = lazy(
   () => import('./screens/displayMovies/DisplayOriginalMovies')

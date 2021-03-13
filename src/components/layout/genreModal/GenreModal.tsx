@@ -1,14 +1,25 @@
 import { useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
+import { useActions } from '../../../hooks/useActions';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
+import {state} from '../../../redux-part/exports'
 
 const Example: React.FC = () => {
   const [show, setShow] = useState(false)
   const [genre, setGenre] = useState('')
   const history = useHistory()
 
+  const {
+    getGenreId
+  } = useActions()
+
+  let { loading, error, data } = useTypedSelector((state):state.GetGenreIdState => state.getGenreId)
+
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
+
+  console.log({loading,error,data})
 
   return (
     <>
@@ -24,6 +35,7 @@ const Example: React.FC = () => {
           onSubmit={(e) => {
             e.preventDefault()
             history.push(`/browse/${genre}/1`)
+            getGenreId()
           }}
         >
           <Form.Group controlId='exampleForm.SelectCustom'>
