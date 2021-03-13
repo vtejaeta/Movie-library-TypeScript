@@ -3,7 +3,8 @@ import { bindActionCreators } from 'redux'
 import {
   searchMoviesByPopular,
   searchMoviesByTopRated,
-  searchMoviesByUpComing
+  searchMoviesByUpComing,
+  getGenreId
 } from '../redux-part/exports'
 
 export const useActions = () => {
@@ -13,7 +14,8 @@ export const useActions = () => {
     {
       searchMoviesByPopular,
       searchMoviesByTopRated,
-      searchMoviesByUpComing
+      searchMoviesByUpComing,
+      getGenreId,
     },
     dispatch
   )
