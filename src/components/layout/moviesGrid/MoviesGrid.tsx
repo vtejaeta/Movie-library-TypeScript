@@ -3,6 +3,7 @@ import { Col, Card } from 'react-bootstrap'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { state } from '../../../redux-part/exports'
 import '../../../assets/css/MoviesGrid.css'
+import useAccessMoviesData from '../../../hooks/useAccessMoviesData';
 
 interface MoviesGridProps {
   category?: string
@@ -15,16 +16,7 @@ const defaultProps: MoviesGridProps = {
 }
 
 const MoviesGrid: React.FC<MoviesGridProps> = ({ category, loadingStatus }) => {
-  let { data } = useTypedSelector(
-    (state): state.MoviesState => {
-      if (category === 'top-rated') {
-        return state.moviesByTopRated
-      } else if (category === 'upcoming') {
-        return state.moviesByUpComing
-      }
-      return state.moviesByPopular
-    }
-  )
+  let {data} = useAccessMoviesData(category)
 
   const renderMovies = () => {
     return loadingStatus === 'loading'
