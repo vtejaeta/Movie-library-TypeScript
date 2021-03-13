@@ -19,8 +19,6 @@ const Example: React.FC = () => {
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
-  console.log({loading,error,data})
-
   return (
     <>
       <div onClick={handleShow} className='nav-link'>
@@ -36,6 +34,7 @@ const Example: React.FC = () => {
             e.preventDefault()
             history.push(`/browse/${genre}/1`)
             getGenreId()
+            console.log({genre})
           }}
         >
           <Form.Group controlId='exampleForm.SelectCustom'>
