@@ -8,11 +8,15 @@ import Pagination from '../../components/shared/pagination/Pagination'
 import '../../assets/css/DisplayMovies.css'
 import useAccessMoviesData from '../../hooks/useAccessMoviesData'
 import MoviesGrid from '../../components/layout/moviesGrid/MoviesGrid'
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+import {state} from '../../redux-part/exports'
 
 interface MatchParam {
   category?: string
   page?: string
 }
+
+const genreArray = ['action','adventure','animation','comedy','crime','documentary','drama','family','fantasy','history','horror','music','mystery','romance','science-fiction','tv-movie','thriller','war','western']
 
 const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
   match,
@@ -30,9 +34,12 @@ const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
     searchMoviesByPopular,
     searchMoviesByTopRated,
     searchMoviesByUpComing,
+    getGenreId,
+    searchMoviesByGenreId
   } = useActions()
 
   let { loading, error, data } = useAccessMoviesData(category)
+  let { data:genreIdsData } = useTypedSelector((state):state.GetGenreIdState => state.getGenreId)
 
   useEffect(() => {
     match.params.page &&
@@ -54,6 +61,8 @@ const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
       } else if (category === 'upcoming') {
         searchMoviesByUpComing(currentPage)
         setErrorParam(false)
+      }else if(category && genreArray.includes(category)){
+        getGenreId()
       } else {
         setErrorParam(true)
       }

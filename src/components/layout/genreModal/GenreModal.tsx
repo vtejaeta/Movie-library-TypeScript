@@ -11,10 +11,11 @@ const Example: React.FC = () => {
   const history = useHistory()
 
   const {
-    getGenreId
+    getGenreId,searchMoviesByGenreId
   } = useActions()
 
-  let { loading, error, data } = useTypedSelector((state):state.GetGenreIdState => state.getGenreId)
+  let { data } = useTypedSelector((state):state.GetGenreIdState => state.getGenreId)
+  // let { data:moviesByGenre } = useTypedSelector((state):state.MoviesState => state.moviesByGenre)
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
@@ -33,8 +34,14 @@ const Example: React.FC = () => {
           onSubmit={(e) => {
             e.preventDefault()
             history.push(`/browse/${genre}/1`)
-            getGenreId()
-            console.log({genre})
+            // getGenreId()
+            // let genreId:{id:number,name:String} | undefined;
+            // if(data){
+            //   genreId = data.genres.find((obj) => {
+            //     return (genre == obj.name.replace(' ','-').toLowerCase())
+            //   })
+            // }
+            // genreId && searchMoviesByGenreId(genreId.id,1)
           }}
         >
           <Form.Group controlId='exampleForm.SelectCustom'>
