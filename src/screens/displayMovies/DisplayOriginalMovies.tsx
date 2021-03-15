@@ -10,13 +10,12 @@ import useAccessMoviesData from '../../hooks/useAccessMoviesData'
 import MoviesGrid from '../../components/layout/moviesGrid/MoviesGrid'
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import {state} from '../../redux-part/exports'
+import { genreArray } from '../../utils/genresArray';
 
 interface MatchParam {
   category?: string
   page?: string
 }
-
-const genreArray = ['action','adventure','animation','comedy','crime','documentary','drama','family','fantasy','history','horror','music','mystery','romance','science-fiction','tv-movie','thriller','war','western']
 
 const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
   match,
@@ -63,6 +62,13 @@ const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
         setErrorParam(false)
       }else if(category && genreArray.includes(category)){
         getGenreId()
+        let genreId:{id:number,name:String} | undefined;
+        if(genreIdsData){
+          genreId = genreIdsData.genres.find((obj) => {
+            return (category === obj.name.replace(' ','-').toLowerCase())
+          })
+        }
+        genreId && searchMoviesByGenreId(genreId.id,currentPage)
       } else {
         setErrorParam(true)
       }
@@ -71,22 +77,7 @@ const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
     }
   }, [category, match, currentPage])
 
-  // const renderMovies = () => {
-  //   return data?.results.map((movie: any) => {
-  //     return (
-  //       <Col sm={12} md={6} lg={4} xl={3} key={Math.random()}>
-  //         <Card className='my-3'>
-  //           <LazyLoadImage
-  //             alt={movie.original_title}
-  //             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-  //           />
-  //         </Card>
-  //       </Col>
-  //     )
-  //   })
-  // }
-
-
+ 
   return (
     <>
       {(errorParam || error) && <ErrorScreen />}
