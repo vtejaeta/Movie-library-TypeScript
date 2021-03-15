@@ -1,5 +1,6 @@
 import { useTypedSelector } from './useTypedSelector'
 import { state } from '../redux-part/exports'
+import { genreArray } from '../utils/genresArray';
 
 const useAccessMoviesData = (category?: string) => {
   return useTypedSelector(
@@ -8,6 +9,8 @@ const useAccessMoviesData = (category?: string) => {
         return state.moviesByTopRated
       } else if (category === 'upcoming') {
         return state.moviesByUpComing
+      }else if(category && genreArray.includes(category)){
+        return state.moviesByGenre
       }
       return state.moviesByPopular
     }
