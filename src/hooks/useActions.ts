@@ -5,7 +5,6 @@ import {
   searchMoviesByTopRated,
   searchMoviesByUpComing,
   searchMoviesByGenreId,
-  getGenreId
 } from '../redux-part/exports'
 
 export const useActions = () => {
@@ -17,7 +16,6 @@ export const useActions = () => {
       searchMoviesByTopRated,
       searchMoviesByUpComing,
       searchMoviesByGenreId,
-      getGenreId,
     },
     dispatch
   )
