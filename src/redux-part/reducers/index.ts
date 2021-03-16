@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-import getGenreIdReducer from "./getGenreIdReducer";
 import searchMoviesByGenreIdReducer from "./searchMoviesByGenreIdReducer";
 import searchMoviesByPopularReducer from "./searchMoviesByPopularReducer";
 import searchMoviesByTopRatedReducer from "./searchMoviesByTopRatedReducer";
@@ -10,7 +9,6 @@ const reducers = combineReducers({
   moviesByTopRated: searchMoviesByTopRatedReducer,
   moviesByUpComing: searchMoviesByUpComingReducer,
   moviesByGenre: searchMoviesByGenreIdReducer,
-  getGenreId: getGenreIdReducer,
 });
 
 export default reducers;
