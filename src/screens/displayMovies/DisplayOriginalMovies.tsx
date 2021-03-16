@@ -10,7 +10,7 @@ import useAccessMoviesData from '../../hooks/useAccessMoviesData'
 import MoviesGrid from '../../components/layout/moviesGrid/MoviesGrid'
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import {state} from '../../redux-part/exports'
-import { genreArray } from '../../utils/genresArray';
+import { genreArray, genreIdsArray } from '../../utils/genresArray';
 
 interface MatchParam {
   category?: string
@@ -33,12 +33,10 @@ const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
     searchMoviesByPopular,
     searchMoviesByTopRated,
     searchMoviesByUpComing,
-    getGenreId,
     searchMoviesByGenreId
   } = useActions()
 
   let { loading, error, data } = useAccessMoviesData(category)
-  let { data:genreIdsData } = useTypedSelector((state):state.GetGenreIdState => state.getGenreId)
 
   useEffect(() => {
     match.params.page &&
@@ -61,13 +59,10 @@ const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
         searchMoviesByUpComing(currentPage)
         setErrorParam(false)
       }else if(category && genreArray.includes(category)){
-        getGenreId()
         let genreId:{id:number,name:String} | undefined;
-        if(genreIdsData){
-          genreId = genreIdsData.genres.find((obj) => {
-            return (category === obj.name.replace(' ','-').toLowerCase())
-          })
-        }
+        genreId = genreIdsArray.find((obj) => {
+          return (category === obj.name.replace(' ','-').toLowerCase())
+        })
         genreId && searchMoviesByGenreId(genreId.id,currentPage)
       } else {
         setErrorParam(true)
@@ -77,7 +72,6 @@ const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
     }
   }, [category, match, currentPage])
 
- 
   return (
     <>
       {(errorParam || error) && <ErrorScreen />}
