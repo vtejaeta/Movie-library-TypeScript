@@ -8,8 +8,6 @@ import Pagination from '../../components/shared/pagination/Pagination'
 import '../../assets/css/DisplayMovies.css'
 import useAccessMoviesData from '../../hooks/useAccessMoviesData'
 import MoviesGrid from '../../components/layout/moviesGrid/MoviesGrid'
-import { useTypedSelector } from '../../hooks/useTypedSelector';
-import {state} from '../../redux-part/exports'
 import { genreArray, genreIdsArray } from '../../utils/genresArray';
 
 interface MatchParam {
@@ -42,12 +40,12 @@ const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
     match.params.page &&
     Number(match.params.page) &&
       !Number.isNaN(Number(match.params.page)) &&
-      Number(match.params.page) != currentPage &&
+      Number(match.params.page) !== currentPage &&
       setCurrentPage(Number(match.params.page))
     if (
       match.params.page &&
       !Number.isNaN(Number(match.params.page)) &&
-      Number(match.params.page) == currentPage
+      Number(match.params.page) === currentPage
     ) {
       if (category === 'popular') {
         searchMoviesByPopular(currentPage)
@@ -70,6 +68,7 @@ const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
     }else if(Number.isNaN(Number(match.params.page))){
       setErrorParam(true)
     }
+    // eslint-disable-next-line
   }, [category, match, currentPage])
 
   return (
