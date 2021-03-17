@@ -21,10 +21,7 @@ const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
 }) => {
   const { category } = match.params
   const [errorParam, setErrorParam] = useState(Number(match.params.page) ? false:true)
-  // const [currentPage, setCurrentPage] = useState(
-  //   history.location.search ? parseInt(history.location.search.slice(6)) : 1
-  // )
-  const [currentPage, setCurrentPage] = useState(
+    const [currentPage, setCurrentPage] = useState(
     match.params.page && Number(match.params.page) ? Number(match.params.page) : 1
   )
   const {
