@@ -2,6 +2,7 @@ import { Suspense, lazy } from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import Footer from './components/layout/footer/Footer'
 import Header from './components/layout/header/Header'
+import SearchAndDisplayMovies from './screens/searchAndDisplayMovies/SearchAndDisplayMovies';
 
 
 const DisplayOriginalMovies = lazy(
@@ -19,7 +20,8 @@ const App = () => {
             <Route exact path='/'>
               <Redirect to='/browse/popular/1' />
             </Route>
-            <Route path='/browse/:category/:page' component={DisplayOriginalMovies} />
+            <Route exact path='/browse/:category/:page' component={DisplayOriginalMovies} />
+            <Route exact path='/search/:term/:page' component={SearchAndDisplayMovies} />
             <Route component={ErrorScreen} />
           </Switch>
           <Footer />
