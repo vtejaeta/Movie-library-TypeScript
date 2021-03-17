@@ -1,6 +1,6 @@
 import '../../../assets/css/MoviesCarousel.css'
 import { Carousel,Image } from 'react-bootstrap'
-// import { LazyLoadImage } from 'react-lazy-load-image-component'
+import noImage from "../../../assets/images/no-photo-available-icon-8.jpg"
 
 interface TopFourMovies {
   topFourMovies?: { [key: string]: any }[]
