@@ -1,17 +1,12 @@
 import { useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
-import { useActions } from '../../../hooks/useActions';
-import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import {state} from '../../../redux-part/exports'
+
 
 const Example: React.FC = () => {
   const [show, setShow] = useState(false)
   const [genre, setGenre] = useState('')
   const history = useHistory()
-
-  const {searchMoviesByGenreId
-  } = useActions()
 
   function handleClose() {
     return setShow(false);
