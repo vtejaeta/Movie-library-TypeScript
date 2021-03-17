@@ -1,9 +1,8 @@
-import { useTypedSelector } from "../../../hooks/useTypedSelector";
 import { Col, Card } from "react-bootstrap";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { state } from "../../../redux-part/exports";
 import "../../../assets/css/MoviesGrid.css";
 import useAccessMoviesData from "../../../hooks/useAccessMoviesData";
+import noImage from '../../../assets/images/no-photo-available-icon-8.jpg';
 
 interface MoviesGridProps {
   category?: string;
@@ -35,7 +34,7 @@ const MoviesGrid: React.FC<MoviesGridProps> = ({ category, loadingStatus }) => {
               <Card className={`my-3 ${loadingStatus}`}>
                 <LazyLoadImage
                   alt={movie.original_title}
-                  src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+                  src={movie.poster_path ? `https://image.tmdb.org/t/p/w300/${movie.poster_path}` : noImage}
                   className={"movie-thumbnail"}
                   height={350}
                   width={230}
