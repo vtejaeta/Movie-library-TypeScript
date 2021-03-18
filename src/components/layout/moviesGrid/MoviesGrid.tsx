@@ -4,6 +4,7 @@ import "../../../assets/css/MoviesGrid.css";
 import useAccessMoviesData from "../../../hooks/useAccessMoviesData";
 import noImage from '../../../assets/images/no-photo-available-icon-8.jpg';
 
+
 interface MoviesGridProps {
   category?: string;
   loadingStatus: string;
@@ -44,7 +45,6 @@ const MoviesGrid: React.FC<MoviesGridProps> = ({ category, loadingStatus }) => {
           );
         });
   };
-
   return <>{renderMovies()}</>;
 };
 
