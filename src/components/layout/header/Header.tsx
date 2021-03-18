@@ -42,8 +42,6 @@ const Header: React.FC = () => {
                 e.preventDefault();
                 if (keyword.trim()) {
                   history.push(`/search/${keyword}/1`);
-                } else {
-                  history.push("/browse/error");
                 }
                 setKeyword('')
               }}
