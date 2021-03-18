@@ -21,7 +21,7 @@ const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
 }) => {
   const { category } = match.params
   const [errorParam, setErrorParam] = useState(Number(match.params.page) ? false:true)
-    const [currentPage, setCurrentPage] = useState(
+  const [currentPage, setCurrentPage] = useState(
     match.params.page && Number(match.params.page) ? Number(match.params.page) : 1
   )
   const {
@@ -68,7 +68,7 @@ const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
     // eslint-disable-next-line
   }, [category, match, currentPage])
 
-  return (
+ return (
     <>
       {(errorParam || error) && <ErrorScreen />}
       {/* {!errorParam && !error && !data && !loading && <LoadingSpinner />} */}
@@ -81,7 +81,7 @@ const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
                 <h1 className='ml-4 mt-4'>{category.toUpperCase()} Movies</h1>
               )}
               <Row className='p-5'>
-                <MoviesGrid loadingStatus='loading' category={category} />
+                <MoviesGrid loadingStatus='loading' category={category}/>
               </Row>
               <Pagination
                 totalPages={data?.total_pages}
@@ -103,12 +103,12 @@ const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
                 <h1 className='ml-4 mt-4'>{category.toUpperCase()} Movies</h1>
               )}
               <Row className='p-5'>
-                <MoviesGrid loadingStatus='loaded' category={category} />
+                <MoviesGrid loadingStatus='loaded' category={category}/>
               </Row>
-              <Pagination
+              {(!!data.total_pages) && (data.total_pages != 1) && <Pagination
                 totalPages={data?.total_pages}
                 currentPage={currentPage}
-              />
+              />}
             </Container>
           </main>
         </>
