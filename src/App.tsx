@@ -1,14 +1,14 @@
-import { Suspense, lazy } from 'react'
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
-import Footer from './components/layout/footer/Footer'
-import Header from './components/layout/header/Header'
+import { Suspense, lazy } from 'react';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import Footer from './components/layout/footer/Footer';
+import Header from './components/layout/header/Header';
 import SearchAndDisplayMovies from './screens/searchAndDisplayMovies/SearchAndDisplayMovies';
 
 
 const DisplayOriginalMovies = lazy(
   () => import('./screens/displayMovies/DisplayOriginalMovies')
-)
-const ErrorScreen = lazy(() => import('./screens/errorScreen/ErrorScreen'))
+);
+const ErrorScreen = lazy(() => import('./screens/errorScreen/ErrorScreen'));
 
 const App = () => {
   return (
@@ -28,7 +28,7 @@ const App = () => {
         </Suspense>
       </BrowserRouter>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
