@@ -15,11 +15,9 @@ const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage }) => {
   }
 
   useEffect(() => {
-    if (totalPages !== undefined) {
-      if (!currentPage || currentPage > totalPages) {
+      if (totalPages && (!currentPage || currentPage > totalPages)) {
         history.push('/browse/error')
       }
-    }
   }, [currentPage, history,totalPages])
 
   return (
