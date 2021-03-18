@@ -7,12 +7,15 @@ const useAccessMoviesData = (category?: string) => {
     (state): state.MoviesState => {
       if (category === 'top-rated') {
         return state.moviesByTopRated
-      } else if (category === 'upcoming') {
+      }else if (category === 'popular') {
+        return state.moviesByPopular
+      }else if (category === 'upcoming') {
         return state.moviesByUpComing
       }else if(category && genreArray.includes(category)){
         return state.moviesByGenre
+      }else {
+        return state.moviesByName
       }
-      return state.moviesByPopular
     }
   )
 
