@@ -3,6 +3,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "../../../assets/css/MoviesGrid.css";
 import useAccessMoviesData from "../../../hooks/useAccessMoviesData";
 import noImage from '../../../assets/images/no-photo-available-icon-8.jpg';
+import {Link} from 'react-router-dom'
 
 
 interface MoviesGridProps {
@@ -32,15 +33,17 @@ const MoviesGrid: React.FC<MoviesGridProps> = ({ category, loadingStatus }) => {
       : data?.results.map((movie: any) => {
           return (
             <Col sm={12} md={6} lg={4} xl={3} key={Math.random()}>
-              <Card className={`my-3 ${loadingStatus}`}>
-                <LazyLoadImage
-                  alt={movie.original_title}
-                  src={movie.poster_path ? `https://image.tmdb.org/t/p/w300/${movie.poster_path}` : noImage}
-                  className={"movie-thumbnail"}
-                  height={350}
-                  width={230}
-                />
-              </Card>
+              <Link to={`/movie/${movie.id}`}>
+                <Card className={`my-3 ${loadingStatus}`}>
+                  <LazyLoadImage
+                    alt={movie.original_title}
+                    src={movie.poster_path ? `https://image.tmdb.org/t/p/w300/${movie.poster_path}` : noImage}
+                    className={"movie-thumbnail"}
+                    height={350}
+                    width={230}
+                  />
+                </Card>
+              </Link>
             </Col>
           );
         });
