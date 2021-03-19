@@ -29,7 +29,7 @@ interface searchMoviesByIdSuccessAction {
 
 interface searchMoviesByIdErrorAction {
   type: "search_movies_by_id_error";
-  payload: String;
+  payload: string;
 }
 
 export type SearchMoviesByIdAction =
