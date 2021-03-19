@@ -79,7 +79,7 @@ const SearchAndDisplayMovies: React.FC<RouteComponentProps<MatchParam>> = ({
               <Row className="p-5">
                 <MoviesGrid loadingStatus="loaded" category={term} />
               </Row>
-              {(!!data.total_pages) && (data.total_pages != 1) && (
+              {(!!data.total_pages) && (data.total_pages !== 1) && (
                 <Pagination
                   totalPages={data.total_pages}
                   currentPage={currentPage}
