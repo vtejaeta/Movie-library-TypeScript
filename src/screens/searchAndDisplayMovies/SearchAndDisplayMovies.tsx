@@ -67,7 +67,7 @@ const SearchAndDisplayMovies: React.FC<RouteComponentProps<MatchParam>> = ({
           </main>
         </>
       )}
-      {!error && !loading && data && data.total_pages && data.results.length && (
+      {Boolean(!error && !loading && data && data.total_pages && data.results.length) && !!data && (
         <>
           <main>
             <Container>
