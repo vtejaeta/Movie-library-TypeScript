@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom'
 
 const Example: React.FC = () => {
   const [show, setShow] = useState(false)
-  const [genre, setGenre] = useState('')
+  const [genre, setGenre] = useState('action')
   const history = useHistory()
 
   function handleClose() {
