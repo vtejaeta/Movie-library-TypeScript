@@ -2,6 +2,7 @@ import { Suspense, lazy } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Footer from './components/layout/footer/Footer';
 import Header from './components/layout/header/Header';
+import MovieDetails from './screens/movieDetails/MovieDetails';
 import SearchAndDisplayMovies from './screens/searchAndDisplayMovies/SearchAndDisplayMovies';
 
 
@@ -22,6 +23,7 @@ const App = () => {
             </Route>
             <Route exact path='/browse/:category/:page' component={DisplayOriginalMovies} />
             <Route exact path='/search/:term/:page' component={SearchAndDisplayMovies} />
+            <Route exact path='/movie/:id' component={MovieDetails} />
             <Route component={ErrorScreen} />
           </Switch>
           <Footer />
