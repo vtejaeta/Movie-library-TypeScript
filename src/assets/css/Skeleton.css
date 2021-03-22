@@ -9,9 +9,18 @@
   height: 12px;
 }
 
+.skeleton-paragraph {
+  width: 75%;
+  margin: 50px 0;
+}
+
+.skeleton-details {
+  width: 30%;
+}
+
 .skeleton.title {
   width: 50%;
-  height: 20px;
+  height: 35px;
   margin-bottom: 15px;
 }
 
@@ -29,4 +38,11 @@
 .skeleton-wrapper {
   margin: 10px auto;
   padding: 10px 15px;
+}
+
+.skeleton.image {
+  background-color: #ddd;
+  height: 450px;
+  width: 350px;
+  border-radius: 10px 10px;
 }
