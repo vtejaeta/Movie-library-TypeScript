@@ -38,7 +38,7 @@ const MovieDetails: React.FC<RouteComponentProps<MatchParam>> = ({ match }) => {
   const printGenres = (genres: { id: number; name: string }[]) => {
     const lastIndex = genres.length - 1;
     return genres.map((genre, index) => {
-      return index !== lastIndex ? `${genre.name},` : `${genre.name}`;
+      return index !== lastIndex ? `${genre.name}, ` : `${genre.name}`;
     });
   };
 
@@ -63,7 +63,7 @@ const MovieDetails: React.FC<RouteComponentProps<MatchParam>> = ({ match }) => {
           <p className="font-weight-bold font-xl mb-2">
             Genres: {printGenres(data.genres)}
           </p>
-          <article className="font-xl mt-5">{data.overview}</article>
+          <p className="font-xl mt-5">{data.overview}</p>
           {data.videos.results.length ? (
             <a
               href={`https://www.youtube.com/watch?v=${data.videos.results[0].key}`}
@@ -98,13 +98,13 @@ const MovieDetails: React.FC<RouteComponentProps<MatchParam>> = ({ match }) => {
     <>
       {loading && (
         <div className="single-movie-card">
-        <div className="left-card">
-          <SkeletonElement type='image'/>
+          <section className="left-card">
+            <SkeletonElement type="image" />
+          </section>
+          <section className="right-card">
+            <SkeletonArticle />
+          </section>
         </div>
-        <div className="right-card">
-          <SkeletonArticle />
-        </div>
-      </div>
       )}
       {!loading && (
         <div className="single-movie-card">
