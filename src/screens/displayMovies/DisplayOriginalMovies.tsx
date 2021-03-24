@@ -100,7 +100,7 @@ const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
           <main>
             <Container>
               {category && (
-                <h1 className='ml-4 mt-4'>{category.toUpperCase()} Movies</h1>
+                <h1 className='ml-5 mt-4'>{category.toUpperCase()} Movies</h1>
               )}
               <Row className='p-5'>
                 <MoviesGrid loadingStatus='loaded' category={category}/>
