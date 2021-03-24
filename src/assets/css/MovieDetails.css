@@ -1,21 +1,22 @@
 .single-movie-card {
-  max-width: 1400px;
-  padding-top: 75px;
-  margin: 0px auto;
+  max-width: 55rem;
+  padding-top: 3rem;
+  margin: 0px auto 10rem;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 10rem;
 }
 
 .left-card {
-  flex: 0 0 35%;
-  height: 575px;
+  flex: 0 0 50%;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
 }
 
 .right-card {
-  padding-top: 1rem;
-  flex: 0 0 40%;
+  padding: 2rem;
+  flex: 0 0 50%;
 }
 
 .single-movie-poster {
@@ -23,6 +24,7 @@
   height: 100%;
   width: 100%;
   border-radius: 10px;
+  background-color: rgb(231, 229, 229);
 }
 
 .font-xl {
@@ -42,27 +44,30 @@
   .single-movie-card {
     position: relative;
     flex-direction: column;
-    width: 75%;
-    padding-top: 150px;
+    max-width: 40rem;
+    padding-top: 10rem;
   }
 
   .left-card {
-    max-width: 450px;
-    min-height: 450px;
+    height: 50%;
+    width: 90%;
     margin-left: 1rem;
-    margin-bottom: 3.5rem;
   }
 
   .right-card {
     margin-left: 1rem;
+    width: 90%;
   }
 
   .back-btn {
     position: absolute;
     top: 5%;
-    left: 7%;
+    left: 9%;
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 520px) {
+  .back-btn {
+    left: 15%;
+  }
 }
