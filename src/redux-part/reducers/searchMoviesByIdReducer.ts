@@ -1,11 +1,11 @@
 import { SearchMoviesByIdActionType } from '../action-types/searchMoviesById'
 import { SearchMoviesByIdAction } from '../actions/searchMoviesById'
-import { MovieState, initialState } from '../moviesState'
+import { MovieDetailsState, initialState } from '../moviesState'
 
 const searchMoviesByIdReducer = (
-  state: MovieState = initialState,
+  state: MovieDetailsState = initialState,
   action: SearchMoviesByIdAction
-): MovieState => {
+): MovieDetailsState => {
   switch (action.type) {
     case SearchMoviesByIdActionType.SEARCH_MOVIES_BY_ID:
       return { loading: true, error: null, data: null }
