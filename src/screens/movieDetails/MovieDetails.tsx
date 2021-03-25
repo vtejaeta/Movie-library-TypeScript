@@ -19,7 +19,7 @@ const MovieDetails: React.FC<RouteComponentProps<MatchParam>> = ({ match }) => {
   const history = useHistory();
 
   let { loading, error, data } = useTypedSelector(
-    (state): state.MovieState => state.moviesById
+    (state): state.MovieDetailsState => state.moviesById
   );
 
   useEffect(() => {
