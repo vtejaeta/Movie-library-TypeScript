@@ -17,7 +17,6 @@ interface MatchParam {
 
 const DisplayOriginalMovies: React.FC<RouteComponentProps<MatchParam>> = ({
   match,
-  history,
 }) => {
   const { category } = match.params
   const [errorParam, setErrorParam] = useState(Number(match.params.page) ? false:true)
