@@ -1,18 +1,18 @@
-import React from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
 
 const Footer: React.FC = () => {
   return (
     // footer credits
-    <footer className='mt-5'>
+    <footer className="mt-5">
       <Container>
         <Row>
-          <Col className='text-center py-3'>
-            Made with 🧡 by{' '}
+          <Col className="text-center py-3">
+            Made with 🧡 by{" "}
             <a
-              href='https://github.com/vtejaeta'
-              target='_blank'
-              rel='noopener noreferrer'
+              href="https://github.com/vtejaeta"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               vtejaeta
             </a>
@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
         </Row>
       </Container>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
