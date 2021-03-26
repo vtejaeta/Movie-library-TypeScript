@@ -17,6 +17,7 @@ const defaultProps: MoviesGridProps = {
 };
 
 const MoviesGrid: React.FC<MoviesGridProps> = ({ category, loadingStatus }) => {
+  // custom hook to get state of movies from redux
   let { data } = useAccessMoviesData(category);
 
   const renderMovies = () => {
