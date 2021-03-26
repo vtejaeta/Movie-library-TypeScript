@@ -14,7 +14,7 @@ import Example from "../genreModal/GenreModal";
 
 const Header: React.FC = () => {
   const [keyword, setKeyword] = useState("");
-  const history = useHistory()
+  const history = useHistory();
 
   return (
     <>
@@ -43,7 +43,7 @@ const Header: React.FC = () => {
                 if (keyword.trim()) {
                   history.push(`/search/${keyword}/1`);
                 }
-                setKeyword('')
+                setKeyword("");
               }}
               inline
             >
@@ -51,10 +51,10 @@ const Header: React.FC = () => {
                 type="text"
                 placeholder="Search Movies"
                 className="mr-sm-2 ml-sm-5"
-                value = {keyword}
+                value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
               />
-              <Button variant="outline-success" className="p-2" type='submit'>
+              <Button variant="outline-success" className="p-2" type="submit">
                 Search
               </Button>
             </Form>
