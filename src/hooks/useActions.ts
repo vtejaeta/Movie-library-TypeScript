@@ -1,16 +1,16 @@
-import { useDispatch } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
 import {
   searchMoviesByPopular,
   searchMoviesByTopRated,
   searchMoviesByUpComing,
   searchMoviesByGenreId,
   searchMoviesByName,
-  searchMoviesById
-} from '../redux-part/exports'
+  searchMoviesById,
+} from "../redux-part/exports";
 
 export const useActions = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   return bindActionCreators(
     {
@@ -22,5 +22,5 @@ export const useActions = () => {
       searchMoviesById,
     },
     dispatch
-  )
-}
+  );
+};
