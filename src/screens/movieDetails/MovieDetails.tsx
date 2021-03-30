@@ -1,5 +1,5 @@
 import { RouteComponentProps } from "react-router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { state } from "../../redux-part/exports";
@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 import "../../assets/css/MovieDetails.css";
 import SkeletonArticle from "../../components/layout/skeletons/SkeletonArticle";
 import SkeletonElement from "../../components/layout/skeletons/SkeletonElement";
+import noImage from "../../assets/images/no-photo-available-icon-8.jpg";
 
 interface MatchParam {
   id?: string;
@@ -24,7 +25,7 @@ const MovieDetails: React.FC<RouteComponentProps<MatchParam>> = ({ match }) => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    id && Number(id) && Number(id) > 0 && !Number.isNaN(id)
+    Number(id) > 0 && !Number.isNaN(id)
       ? searchMoviesById(Number(id))
       : history.push("/browse/error");
   }, []);
@@ -54,14 +55,16 @@ const MovieDetails: React.FC<RouteComponentProps<MatchParam>> = ({ match }) => {
             {" "}
             Go Back
           </button>
-          <h1 className="text-capitalize mb-4">{`${
-            data.original_title
-          } (${data.release_date.slice(0, 4)})`}</h1>
+          <h1 className="text-capitalize mb-4">{`${data.original_title} ${
+            data.release_date.slice(0, 4)
+              ? `(${data.release_date.slice(0, 4)})`
+              : ""
+          }`}</h1>
           <p className="font-weight-bold font-xl mb-2">
-            Runtime: {getRunTime(data.runtime)}
+            Runtime: {data.runtime ? getRunTime(data.runtime) : `NA`}
           </p>
           <p className="font-weight-bold font-xl mb-2">
-            Genres: {printGenres(data.genres)}
+            Genres: {data.genres.length ? printGenres(data.genres) : "NA"}
           </p>
           <p className="font-xl mt-5">{data.overview}</p>
           {data.videos.results.length ? (
@@ -86,7 +89,11 @@ const MovieDetails: React.FC<RouteComponentProps<MatchParam>> = ({ match }) => {
     if (data) {
       return (
         <img
-          src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
+          src={
+            data.poster_path
+              ? `https://image.tmdb.org/t/p/original${data.poster_path}`
+              : noImage
+          }
           alt={data.original_title}
           className="single-movie-poster"
         />
