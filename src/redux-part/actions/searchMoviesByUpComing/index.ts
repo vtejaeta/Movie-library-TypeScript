@@ -1,3 +1,5 @@
+import { MoviesResultState } from "../../moviesState";
+
 interface searchMoviesByUpComingAction {
     type: 'search_movies_by_upcoming'
   }
@@ -6,7 +8,7 @@ interface searchMoviesByUpComingAction {
     type: 'search_movies_by_upcoming_success'
     payload: {
       page: number
-      results: []
+      results: MoviesResultState[]
       total_pages: number
       total_results: number
     }

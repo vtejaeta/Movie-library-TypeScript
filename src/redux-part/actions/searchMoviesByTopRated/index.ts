@@ -1,3 +1,5 @@
+import { MoviesResultState } from "../../moviesState";
+
 interface searchMoviesByTopRatedAction {
   type: 'search_movies_by_top_rated'
 }
@@ -6,7 +8,7 @@ interface searchMoviesByTopRatedSuccessAction {
   type: 'search_movies_by_top_rated_success'
   payload: {
     page: number
-    results: []
+    results: MoviesResultState[]
     total_pages: number
     total_results: number
   }

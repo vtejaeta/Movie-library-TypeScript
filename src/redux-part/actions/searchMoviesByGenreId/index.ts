@@ -1,3 +1,5 @@
+import { MoviesResultState } from "../../moviesState";
+
 interface searchMoviesByGenreIdAction {
     type: 'search_movies_by_genre_id'
   }
@@ -6,7 +8,7 @@ interface searchMoviesByGenreIdAction {
     type: 'search_movies_by_genre_id_success'
     payload: {
       page: number
-      results: []
+      results: MoviesResultState[]
       total_pages: number
       total_results: number
     }
