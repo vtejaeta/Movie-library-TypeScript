@@ -7,6 +7,7 @@ import { state } from "../../redux-part/exports";
 import Pagination from "../../components/shared/pagination/Pagination";
 import MoviesGrid from "../../components/layout/moviesGrid/MoviesGrid";
 import "../../assets/css/DisplayMovies.css";
+import ErrorScreen from '../errorScreen/ErrorScreen'
 
 interface MatchParam {
   term?: string;
@@ -18,9 +19,10 @@ const SearchAndDisplayMovies: React.FC<RouteComponentProps<MatchParam>> = ({
 }) => {
   const { term } = match.params;
   const [currentPage, setCurrentPage] = useState(
-    match.params.page && Number(match.params.page)
-      ? Number(match.params.page)
-      : 1
+    Number(match.params.page) || 1
+  );
+  const [errorParam, setErrorParam] = useState(
+    Number(match.params.page) ? false : true
   );
 
   const { searchMoviesByName } = useActions();
@@ -30,19 +32,25 @@ const SearchAndDisplayMovies: React.FC<RouteComponentProps<MatchParam>> = ({
   );
 
   useEffect(() => {
-    match.params.page &&
       Number(match.params.page) &&
-      !Number.isNaN(Number(match.params.page)) &&
       Number(match.params.page) !== currentPage &&
       setCurrentPage(Number(match.params.page));
     if (
-      match.params.page &&
-      !Number.isNaN(Number(match.params.page)) &&
+      Number(match.params.page) > 0 &&
       Number(match.params.page) === currentPage
     ) {
       term && searchMoviesByName(term, currentPage);
+    }else if (
+      Number.isNaN(Number(match.params.page)) ||
+      Number(match.params.page) < 0
+    ) {
+      setErrorParam(true);
     }
   }, [term, match, currentPage]);
+
+  if (errorParam || error) {
+    return <ErrorScreen />;
+  }
 
   return (
     <>
@@ -59,15 +67,11 @@ const SearchAndDisplayMovies: React.FC<RouteComponentProps<MatchParam>> = ({
               <Row className="p-5">
                 <MoviesGrid loadingStatus="loading" category={term} />
               </Row>
-              <Pagination
-                totalPages={data?.total_pages}
-                currentPage={currentPage}
-              />
             </Container>
           </main>
         </>
       )}
-      {Boolean(!error && !loading && data && data.total_pages && data.results.length) && !!data && (
+      {data && data.total_pages && data.results.length && (
         <>
           <main>
             <Container>
@@ -89,7 +93,7 @@ const SearchAndDisplayMovies: React.FC<RouteComponentProps<MatchParam>> = ({
           </main>
         </>
       )}
-      {!error && !loading && data && (!data.total_pages || !data.results.length) && (
+      {data && (!data.total_pages || !data.results.length) && (
           <section className="error-component">
             <h1 className="went-wrong">Oh No!</h1>
             <p>{[`It looks like there are no movies with `,<strong className="font-weight-bold">{term}</strong>,` name`]}</p>
