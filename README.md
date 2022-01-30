@@ -38,4 +38,4 @@ REACT_APP_BASE_URL = https://api.themoviedb.org/3
 
 For questions related to using the project, please reachout to me through
 
-- [Twitter](https://twitter.com/vtejaeta9493)
+- [Twitter](https://twitter.com/vtejaeta)
